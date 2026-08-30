@@ -1,0 +1,68 @@
+# Engine self-test: synthetic twin experiment.
+# Data is GENERATED from these exact parameters with noise, then the optimizer
+# must recover them. Two heating rates -> E identifiable. Mean recovery error
+# within a few percent proves the model/estimation chain end-to-end.
+# Run with:  python analyze.py --selftest
+name = "selftest_twin"
+
+[grid]
+T0      = 300.0
+T_final = 1100.0
+R_gas   = 8.314
+PO2_ref = 0.21
+
+[[species]]
+name = "P1"
+initial = 0.30
+gas = false
+
+[[species]]
+name = "P2"
+initial = 0.25
+gas = false
+
+[[species]]
+name = "Residue"
+initial = 0.45
+gas = false
+
+[[species]]
+name = "G"
+initial = 0.0
+gas = true
+
+[[reaction]]
+name = "step1"
+reactant = "P1"
+products = ["G"]
+yields   = [1.0]
+aerobic  = false
+log10_A  = 9.0
+E        = 140000.0
+n        = 1.2
+estimate = ["log10_A", "E", "n"]
+
+[[reaction]]
+name = "step2"
+reactant = "P2"
+products = ["G"]
+yields   = [1.0]
+aerobic  = false
+log10_A  = 7.0
+E        = 150000.0
+n        = 0.8
+estimate = ["log10_A", "E", "n"]
+
+[experiments]
+ids  = ["beta5", "beta10"]
+beta = [5.0, 10.0]
+PO2  = [0.21, 0.21]
+
+[data]
+mode = "synthetic"
+noise_sigma = 0.004
+n_points = 150
+seed = 7
+
+[estimation]
+n_multistarts = 2

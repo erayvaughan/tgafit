@@ -1,0 +1,47 @@
+# ---------------------------------------------------------------------------
+# Environments and build artifacts
+# ---------------------------------------------------------------------------
+.CondaPkg/
+__pycache__/
+*.py[cod]
+
+# ---------------------------------------------------------------------------
+# Generated output. Everything here is reproduced by running the pipeline.
+# ---------------------------------------------------------------------------
+tgafit_main/results/
+legacy_onera/
+*.bak
+
+# ---------------------------------------------------------------------------
+# Raw instrument exports. Lab data, multi-MB binaries, not ours to publish.
+# Drop your own exports in tgafit_main/raw_exports/ and they stay local.
+# ---------------------------------------------------------------------------
+tgafit_main/raw_exports/
+
+# ---------------------------------------------------------------------------
+# Confidential experimental inputs and fitted problem definitions.
+# Keep these local; never publish them to the repository.
+# ---------------------------------------------------------------------------
+tgafit_main/data/
+tgafit_main/problems/
+
+# ---------------------------------------------------------------------------
+# Written reports and slide decks. Kept locally in reports/, out of the repo
+# because they are large binaries containing unpublished results.
+# Delete this line if you want them versioned.
+# ---------------------------------------------------------------------------
+reports/
+
+# ---------------------------------------------------------------------------
+# Editor and tool settings that are specific to one machine
+# ---------------------------------------------------------------------------
+**/.claude/settings.local.json
+.vscode/
+.idea/
+
+# ---------------------------------------------------------------------------
+# OS cruft
+# ---------------------------------------------------------------------------
+Thumbs.db
+Desktop.ini
+.DS_Store
